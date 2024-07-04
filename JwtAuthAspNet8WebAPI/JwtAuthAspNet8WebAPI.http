@@ -1,0 +1,6 @@
+@JwtAuthAspNet8WebAPI_HostAddress = http://localhost:5142
+
+GET {{JwtAuthAspNet8WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
