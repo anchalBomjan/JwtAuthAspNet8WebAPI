@@ -1,9 +1,12 @@
 using JwtAuthAspNet8WebAPI.Data;
 using JwtAuthAspNet8WebAPI.Data.Entities;
+using JwtAuthAspNet8WebAPI.Data.Interface;
+using JwtAuthAspNet8WebAPI.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,6 +61,13 @@ builder.Services
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
         };
     });
+
+
+// Inject app Dependencies (Dependency Injection)
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+
 
 var app = builder.Build();
 
